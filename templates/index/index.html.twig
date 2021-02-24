@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello IndexController!{% endblock %}
+
+{% block body %}
+    <h1 class="mt-2 text-white text-center">
+        Chat test with the mercure protocol on the Symfony framework
+    </h1>
+    <div class="container d-flex justify-content-between mb-5 mt-5">
+        {% for user in users %}
+            {% if user.id != app.user.id %}
+                <a class="btn btn-primary" href="{{ path('conversations.create.conversation', {user: user.id}) }}">{{ user.username }}</a>
+            {% endif %}
+        {% endfor %}
+    </div>
+    <h1 class="mt-2 text-white text-center">
+        Hello {{ app.user.username }}
+    </h1>
+    <div id="app" data-username="{{ app.user.username }}"></div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ encore_entry_script_tags('app') }}
+{% endblock %}
